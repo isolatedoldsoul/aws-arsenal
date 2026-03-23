@@ -60,7 +60,7 @@ Browser (React + TypeScript)
 |------|-------------|--------------|
 | **IAM Credentials** | Single-account users | Access Key + Secret Key (+ optional session token). Optional cross-account role. |
 | **AWS SSO Token** | Any SSO user | OIDC device auth flow — browser opens AWS SSO URL, no CLI needed. Per-account SSO credentials fetched automatically via `sso.get_role_credentials`. |
-| **SSO + Role Switch** | GlobalAdmin / CloudOps only | SSO login + assumes a management role (e.g. `ks-it-managed-automation`) across all org accounts. Requires Org Account ID, Role Name, External ID. |
+| **SSO + Role Switch** | GlobalAdmin / CloudOps only | SSO login + assumes a management role (e.g. `org-automation-role`) across all org accounts. Requires Org Account ID, Role Name, External ID. |
 
 ### Auth Mode Field Matrix
 
@@ -284,7 +284,7 @@ This gives the app access to:
     "sso_start_url": "https://your-sso.awsapps.com/start",
     "sso_region": "us-east-1",
     "default_region": "us-west-2",
-    "role_name": "ks-it-managed-automation"
+    "role_name": "org-automation-role"
   },
   "accounts": [],
   "session_timeout_minutes": 60,
@@ -407,7 +407,7 @@ After adding the file, register the scanner name in the frontend dropdown (`src/
 
 ## Roadmap
 
-- **SSO + Role Switch infrastructure** — deploy `ks-it-managed-automation` to all member accounts via StackSet with correct trust policy to enable org-wide role assumption scanning
+- **SSO + Role Switch infrastructure** — deploy automation role to all member accounts via StackSet with correct trust policy to enable org-wide role assumption scanning
 - **Risk scoring** — severity-based Risk Level driven by finding type (unassociated EIP = low, public S3 = high, etc.)
-- **Script integration (IOL4)** — sanitize and integrate existing Cloud Onboarding scripts as GlobalAdmin-only plugins; plugin contract extension with parameter schemas and safe execution UI
+- **Script integration** — integrate additional automation scripts as GlobalAdmin-only plugins; plugin contract extension with parameter schemas and safe execution UI
 - **Phase 2: AI Chat** — natural language queries over scan results ("which accounts have the most stopped instances?")
