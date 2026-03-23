@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  cloudops-console:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.json:/app/config.json         # your config — never baked into image
+      - /tmp/cloudops-sessions:/tmp/sessions   # session isolation across restarts
+      - /tmp/cloudops-reports:/tmp/reports     # report files
+      - ~/.aws:/root/.aws:ro                   # host AWS config + SSO cache (read-only)
+    environment:
+      # Server-side AWS credentials for S3 history bucket
+      # These are NOT user credentials — they're the app server's own access
+      # Option 1: explicit keys (fill in .env file, never commit it)
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:-}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+      # Option 2: if running on EC2/ECS/EKS — remove the above and use instance profile
+    restart: unless-stopped

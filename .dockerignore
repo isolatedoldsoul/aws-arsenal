@@ -1,0 +1,14 @@
+node_modules
+dist
+.iol1
+__pycache__
+**/__pycache__
+*.pyc
+*.pyo
+.env
+.git
+.gitignore
+config.json
+/tmp
+*.log
+.DS_Store

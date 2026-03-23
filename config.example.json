@@ -1,0 +1,23 @@
+{
+  "aws": {
+    "sso_session_name": "my-org",
+    "sso_start_url": "https://my-org.awsapps.com/start/#/",
+    "sso_region": "us-east-1",
+    "default_region": "us-east-1",
+    "role_name": ""
+  },
+  "accounts": [],
+  "session_timeout_minutes": 60,
+  "s3_upload": {
+    "enabled": false,
+    "mode": "env",
+    "bucket": "your-bucket-name",
+    "region": "us-east-1",
+    "_modes": {
+      "env": "Uses server IAM role / env vars / ~/.aws credentials (default, no extra config needed)",
+      "keys": "Set mode to 'keys' and fill in access_key_id + secret_access_key below"
+    },
+    "access_key_id": "",
+    "secret_access_key": ""
+  }
+}

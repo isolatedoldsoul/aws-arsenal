@@ -1,0 +1,5 @@
+{
+  "name": "Cloud Ops Console",
+  "description": "AWS Automation Portal for cloud operations, scanning, and resource management.",
+  "requestFramePermissions": []
+}
